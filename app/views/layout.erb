@@ -14,8 +14,13 @@
     <div class="wrapper">
 
       <header><div class="nav">
-        <a href="/users/sign-up">Sign Up</a>
-        <a href="/users/log-in">Log In</a>
+        <a href="/">Home</a>
+        <% if !current_user %>
+          <a href="/users/sign-up">Sign Up</a>
+          <a href="/users/log-in">Log In</a>
+        <% else %>
+          <a href="/lists">Lists</a>
+        <% end %>
       </div></header>
 
         <%= yield %>
