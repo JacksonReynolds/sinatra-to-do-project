@@ -1,18 +1,24 @@
 class UsersController < ApplicationController
 
-  get "/users/sign-up" do
+  get "/sign-up" do
+    if current_user
+      redirect '/'
+    end
     erb :"users/sign-up"
   end
 
-  # POST: /users
-  post "/users" do
-    new_user = User.create(params[:user])
+  post "/sign-up" do
+    user = User.create(params[:user])
     if user.valid?
+      session[:user_id] = user.id
+      redirect "/"
+    else
+      flash[:message] = user.errors.full_messages
+      erb :'users/sign-up'
     end
-    redirect "/"
   end
 
-  get "/users/log-in" do
+  get "/log-in" do
     erb :"users/log-in"
   end
 
