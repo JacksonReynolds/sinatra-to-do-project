@@ -1,6 +1,6 @@
 <h2>User Sign-Up Form</h2>
 
-<% if !flash[:message].empty? %>
+<% if flash[:message] %>
     <small><strong><%= flash[:message].join %></strong></small><br>
     <% flash[:message].clear %>
 <% end %>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
-    <h2>Welcome!</h2>
+    <h2>Welcome <%= current_user.username if current_user %>!</h2>
 
     <div class="content">
       <p>Welcome to the Sinatra To-Do List Manager! Sign up to become a registered user and create and edit your own lists of to-dos.</p>

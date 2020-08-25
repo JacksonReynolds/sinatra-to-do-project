@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       redirect "/"
     else
       flash[:message] = user.errors.full_messages
-      erb :'users/sign-up'
+      erb :"users/sign-up"
     end
   end
 
@@ -22,14 +22,20 @@ class UsersController < ApplicationController
     erb :"users/log-in"
   end
 
-  # GET: /users/5
-  get "/users/:id" do
-    erb :"/users/show.html"
+  post '/log-in' do
+    @user = User.find_by(username: params[:user][:username])
+    if @user && @user.authenticate(params[:user][:password])
+      session[:user_id] = @user.id
+      redirect '/'
+    else
+      flash[:message] = "Invalid Login"
+      erb :"users/log-in"
+    end
   end
 
-  # GET: /users/5/edit
-  get "/users/:id/edit" do
-    erb :"/users/edit.html"
+  get '/log-out' do
+    session.clear
+    redirect '/'
   end
 
 end
