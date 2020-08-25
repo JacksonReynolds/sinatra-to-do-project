@@ -1,18 +1,14 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  get "/users" do
-    erb :"/users/index.html"
-  end
-
-  # GET: /users/new
-  get "/users/new" do
-    erb :"/users/new.html"
+  get "/users/sign-up" do
+    erb :"/users/sign-up"
   end
 
   # POST: /users
   post "/users" do
-    redirect "/users"
+    binding.pry
+    new_user = User.create(params[:user])
+    redirect "/"
   end
 
   # GET: /users/5
