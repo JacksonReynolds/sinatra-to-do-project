@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -7,22 +8,21 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secret"
+    use Rack::Flash
   end
-
-  register Sinatra::Flash
 
   get "/" do
     erb :welcome
   end
 
-  module Helpers
+  helpers do
     def current_user
       User.find_by(id: session[:user_id])
     end
 
     def redirect_if_not_logged_in
       if !current_user
-        flash[:message] = "Please log in to view that page"
+        flash.now[:message] = "Please log in to view that page"
         redirect '/log-in'
       end
     end

@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   # POST: /users
   post "/users" do
     new_user = User.create(params[:user])
+    if user.valid?
+    end
     redirect "/"
   end
 
@@ -24,13 +26,4 @@ class UsersController < ApplicationController
     erb :"/users/edit.html"
   end
 
-  # PATCH: /users/5
-  patch "/users/:id" do
-    redirect "/users/:id"
-  end
-
-  # DELETE: /users/5/delete
-  delete "/users/:id/delete" do
-    redirect "/users"
-  end
 end
