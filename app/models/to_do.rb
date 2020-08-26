@@ -1,4 +1,5 @@
 class ToDo < ActiveRecord::Base
     belongs_to :list
-    belongs_to :user
+    has_one :user, through: :list
+    # belongs_to :user, through: :list # doesn't like through:
 end

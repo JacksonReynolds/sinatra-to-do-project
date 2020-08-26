@@ -1,0 +1,36 @@
+<h2><%= @list.name %></h2>
+<!-- Edit and Delete buttons -->
+<form action="/lists/<%= @list.id %>/edit" method="get">
+    <input type="submit" value="Edit">
+</form>
+<form action="/lists/<%= @list.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+</form><br>
+<!-- Dates -->
+<p>
+Date Created: <%= @list.date_created %><br>
+Date Due: <%= @list.date_due %>
+</p>
+
+<!-- List To-Dos -->
+<p><strong>To-Dos</strong></p>
+<ul>
+    <% @list.to_dos.each do |to_do| %>
+        <li>
+            <!-- Delete Button (Done) -->
+            <form action="/to_dos/<%= to_do.id %>" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Done!">
+                <%= to_do.task %>
+                <!-- Link to edit specific to-do -->
+                <a href="/to_dos/<%= to_do.id %>/edit">Edit</a>
+            </form>
+        </li>
+    <% end %>
+</ul><br>
+<!-- Add ToDo -->    
+<a href="/to_dos/new">Add To-Do</a><br>
+
+
+

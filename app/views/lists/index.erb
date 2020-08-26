@@ -1,0 +1,13 @@
+<h2><%= current_user.username %>'s To-Do Lists</h2>
+
+<!-- Flash Message -->
+<% if flash[:message] %>
+    <small><strong><%= flash[:message] %></strong></small><br>
+    <% flash[:message].clear %>
+<% end %>
+
+<p><a href="/lists/new">New To-Do List</a></p>
+
+<% @lists.each do |list| %>
+    <a href="/lists/<%= list.id %>"><h3><%= list.name %></h3><br></a>
+<% end %>

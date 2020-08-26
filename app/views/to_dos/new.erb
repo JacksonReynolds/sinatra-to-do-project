@@ -1,0 +1,11 @@
+<h2>New To-Do Item</h2>
+
+<form action="/to_dos" method="post">
+    <label for="to_do[task]">Task: </label><textarea name="to_do[task]" placeholder="Describe task here"></textarea><br>
+    <label for="to_do[list_id]">Select list for this to-do: </label><select name="to_do[list_id]">
+        <% @lists.each do |list| %>
+            <option value="<%= list.id %>" <%= 'selected' if list.id == session[:working_list_id] %>><%= list.name %></option>
+        <% end %>
+    </select>
+    <input type="submit" value="Submit">
+</form>

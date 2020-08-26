@@ -2,36 +2,48 @@ class ToDosController < ApplicationController
 
   # GET: /to_dos
   get "/to_dos" do
-    erb :"/to_dos/index.html"
+    redirect_if_not_logged_in
+    @lists = current_user.lists
+    erb :"/to_dos/index"
   end
 
   # GET: /to_dos/new
   get "/to_dos/new" do
-    erb :"/to_dos/new.html"
+    redirect_if_not_logged_in
+    @to_dos = current_user.to_dos
+    @lists = current_user.lists
+    erb :"/to_dos/new"
   end
 
-  # POST: /to_dos
-  post "/to_dos" do
-    redirect "/to_dos"
+  post '/to_dos' do
+    redirect_if_not_logged_in
+    to_do = ToDo.create(params[:to_do])
+    to_do.save
+    redirect "/lists/#{to_do.list_id}"
   end
 
-  # GET: /to_dos/5
-  get "/to_dos/:id" do
-    erb :"/to_dos/show.html"
+  get '/to_dos/:id/edit' do
+    redirect_if_not_logged_in
+    @to_do = ToDo.find_by(params)
+    owner_error if !check_owner(@to_do)
+    erb :'to_dos/edit'
   end
 
-  # GET: /to_dos/5/edit
-  get "/to_dos/:id/edit" do
-    erb :"/to_dos/edit.html"
+  patch '/to_dos/:id' do
+    redirect_if_not_logged_in
+    to_do = ToDo.find_by(id: params[:id])
+    owner_error if !check_owner(to_do)
+    to_do.update(params[:to_do])
+    redirect "/lists/#{session[:working_list_id]}"
   end
 
-  # PATCH: /to_dos/5
-  patch "/to_dos/:id" do
-    redirect "/to_dos/:id"
+  delete '/to_dos/:id' do
+    redirect_if_not_logged_in
+    to_do = ToDo.find_by(params[:id])
+    owner_error if !check_owner(to_do)
+    to_do.delete
+    flash[:message] = "To do item deleted!"
+    redirect "/lists/#{session[:working_list_id]}"
   end
 
-  # DELETE: /to_dos/5/delete
-  delete "/to_dos/:id/delete" do
-    redirect "/to_dos"
-  end
 end

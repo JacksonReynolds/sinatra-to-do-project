@@ -1,0 +1,22 @@
+<h2>All To-Dos</h2>
+
+<ul>
+    <% @lists.each do |list| %>
+        <li>
+            <h3><a href="/lists/<%= list.id %>"><%= list.name %></a></h3>
+            <ul>
+                <% list.to_dos.each do |to_do| %>
+                    <li>
+                        <form action="/to_dos/<%= to_do.id %>" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="submit" value="Done!">
+                            <%= to_do.task %>
+                            <!-- Link to edit specific to-do -->
+                            <a href="/to_dos/<%= to_do.id %>/edit">Edit</a>
+                        </form>
+                    </li>
+                <% end %>
+            </ul>
+        </li>
+    <% end %>
+</ul>

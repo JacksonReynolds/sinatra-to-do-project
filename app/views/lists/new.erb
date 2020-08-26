@@ -1,0 +1,8 @@
+<h2>New To-Do List Form</h2>
+
+<form action="/lists" method="post">
+    <label for="list[name]">Name of List: </label><input type="text" name="list[name]"><br>
+    <label for="list[date_created]">Date Created: </label><input type="date" name="list[date_created]" value="<%= Date.today %>"><br>
+    <label for="list[date_due]">Date Due: </label><input type="date" name="list[date_due]"><br>
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,7 @@
+<h2>Edit To-Do</h2>
+
+<form action="/to_dos/<%= @to_do.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="to_do[task]">Task: </label><textarea name="to_do[task]" placeholder="Describe task here"><%= @to_do.task %></textarea><br>
+    <input type="submit" value="Submit">
+</form>

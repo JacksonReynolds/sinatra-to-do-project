@@ -1,5 +1,5 @@
 require './config/environment'
-# require 'rack-flash'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -22,9 +22,18 @@ class ApplicationController < Sinatra::Base
 
     def redirect_if_not_logged_in
       if !current_user
-        flash.now[:message] = "Please log in to view that page"
+        flash[:message] = "Please log in to view that page"
         redirect '/log-in'
       end
+    end
+
+    def check_owner(obj)
+      obj.user == current_user
+    end
+
+    def owner_error
+      flash[:message] = "That doesn't belong to you!"
+      redirect '/lists'
     end
   end
 
