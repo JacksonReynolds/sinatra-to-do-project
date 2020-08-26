@@ -10,7 +10,6 @@ class ToDosController < ApplicationController
   # GET: /to_dos/new
   get "/to_dos/new" do
     redirect_if_not_logged_in
-    @to_dos = current_user.to_dos
     @lists = current_user.lists
     erb :"/to_dos/new"
   end
