@@ -1,5 +1,11 @@
 <h2><%= @list.name %></h2>
 <!-- Edit and Delete buttons -->
+
+<% if flash[:message] %>
+    <small><strong><%= flash[:message].join %></strong></small><br>
+    <% flash[:message].clear %>
+<% end %>
+
 <form action="/lists/<%= @list.id %>/edit" method="get">
     <input type="submit" value="Edit">
 </form>
