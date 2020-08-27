@@ -24,7 +24,7 @@ class ListsController < ApplicationController
   end
 
   get "/lists/:id/edit" do
-    @list = List.find_by(params)
+    @list = List.find_by(id: params[:id])
     owner_error if !check_owner(@list)
     erb :"/lists/edit"
   end

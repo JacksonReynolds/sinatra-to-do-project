@@ -11,7 +11,6 @@ class ToDosController < ApplicationController
   end
 
   post '/to_dos' do
-    binding.pry
     to_do = ToDo.create(params[:to_do])
     to_do.save
     redirect "/lists/#{to_do.list_id}"
