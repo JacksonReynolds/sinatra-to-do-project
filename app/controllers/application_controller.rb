@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
     use Rack::Flash
   end
 
-  before /\/(?!log\-in|sign\-up|log\-out)/ do
+  before(/(\/li).*|(\/to).*/) do
     puts "inb4!!"
   end
 
