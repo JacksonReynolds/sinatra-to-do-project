@@ -17,7 +17,7 @@ class ListsController < ApplicationController
   end
 
   get "/lists/:id" do
-    @list = List.find_by(params)
+    @list = List.find_by(id: params[:id])
     owner_error if !check_owner(@list)
     session[:working_list_id] = @list.id
     erb :"/lists/show"

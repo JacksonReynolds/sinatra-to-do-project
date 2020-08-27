@@ -11,6 +11,7 @@ class ToDosController < ApplicationController
   end
 
   post '/to_dos' do
+    binding.pry
     to_do = ToDo.create(params[:to_do])
     to_do.save
     redirect "/lists/#{to_do.list_id}"
@@ -31,7 +32,7 @@ class ToDosController < ApplicationController
 
   delete '/to_dos/:id' do
     to_do = ToDo.find_by(id: params[:id])
-    session[:working_list_id] = to_do.list.id if !session[:working_list_id]
+    session[:working_list_id] = to_do.list.id if !session[:working_list_id] # if user deletes from to_do index
     owner_error if !check_owner(to_do)
     to_do.delete
     flash[:message] = "To do item deleted!"
