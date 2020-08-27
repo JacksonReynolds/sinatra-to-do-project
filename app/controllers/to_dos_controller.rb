@@ -1,13 +1,11 @@
 class ToDosController < ApplicationController
 
-  # GET: /to_dos
   get "/to_dos" do
     redirect_if_not_logged_in
     @lists = current_user.lists
     erb :"/to_dos/index"
   end
 
-  # GET: /to_dos/new
   get "/to_dos/new" do
     redirect_if_not_logged_in
     @lists = current_user.lists
@@ -16,10 +14,8 @@ class ToDosController < ApplicationController
 
   post '/to_dos' do
     redirect_if_not_logged_in
-    binding.pry
     to_do = ToDo.create(params[:to_do])
     to_do.save
-
     redirect "/lists/#{to_do.list_id}"
   end
 
@@ -39,7 +35,6 @@ class ToDosController < ApplicationController
   end
 
   delete '/to_dos/:id' do
-    binding.pry
     redirect_if_not_logged_in
     to_do = ToDo.find_by(id: params[:id])
     owner_error if !check_owner(to_do)

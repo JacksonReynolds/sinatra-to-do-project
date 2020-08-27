@@ -1,6 +1,5 @@
 class ListsController < ApplicationController
   
-  # GET: /lists/new
   get "/lists/new" do
     redirect_if_not_logged_in
     erb :"/lists/new"
@@ -12,7 +11,6 @@ class ListsController < ApplicationController
     erb :'lists/index'
   end
 
-  # POST: /lists
   post "/lists" do
     redirect_if_not_logged_in
     list = List.create(params[:list])
@@ -29,7 +27,6 @@ class ListsController < ApplicationController
     erb :"/lists/show"
   end
 
-  # GET: /lists/5/edit
   get "/lists/:id/edit" do
     redirect_if_not_logged_in
     @list = List.find_by(params)
@@ -37,17 +34,14 @@ class ListsController < ApplicationController
     erb :"/lists/edit"
   end
 
-  # PATCH: /lists/5
   patch "/lists/:id" do
     redirect_if_not_logged_in
-    # binding.pry
     list = List.find_by(id: params[:id])
     owner_error if !check_owner(list)
     list.update(params[:list])
     redirect "/lists/#{list.id}"
   end
 
-  # DELETE: /lists/5/delete
   delete "/lists/:id" do
     redirect_if_not_logged_in
     list = List.find_by(id: params[:id])

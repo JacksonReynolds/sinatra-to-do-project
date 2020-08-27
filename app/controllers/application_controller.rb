@@ -11,6 +11,10 @@ class ApplicationController < Sinatra::Base
     use Rack::Flash
   end
 
+  before /\/(?!log\-in|sign\-up|log\-out)/ do
+    puts "inb4!!"
+  end
+
   get "/" do
     erb :welcome
   end
