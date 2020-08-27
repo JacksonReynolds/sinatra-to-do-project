@@ -12,7 +12,6 @@ class ApplicationController < Sinatra::Base
   end
 
   before(/(\/li).*|(\/to).*/) do
-    puts "working"
     redirect_if_not_logged_in
   end
 

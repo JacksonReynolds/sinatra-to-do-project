@@ -17,7 +17,7 @@ class ToDosController < ApplicationController
   end
 
   get '/to_dos/:id/edit' do
-    @to_do = ToDo.find_by(params)
+    @to_do = ToDo.find_by(id: params[:id])
     owner_error if !check_owner(@to_do)
     erb :'to_dos/edit'
   end
@@ -26,11 +26,12 @@ class ToDosController < ApplicationController
     to_do = ToDo.find_by(id: params[:id])
     owner_error if !check_owner(to_do)
     to_do.update(params[:to_do])
-    redirect "/lists/#{session[:working_list_id]}"
+    redirect "/lists/#{to_do.list.id}"
   end
 
   delete '/to_dos/:id' do
     to_do = ToDo.find_by(id: params[:id])
+    session[:working_list_id] = to_do.list.id if !session[:working_list_id]
     owner_error if !check_owner(to_do)
     to_do.delete
     flash[:message] = "To do item deleted!"
