@@ -2,7 +2,7 @@
 
 ## Overview
 
-This To-Do List manager is a web app run on the Sinatra framework where a user can sign-up with a password protected username and manage their own set of to-do lists. It is a locally hosted app, so the user will need to use shotgun or rackup in order to access the app from their browser. In the app, a user can create, edit, read and delete their to-do lists as well as the individual to-do items themselves. 
+This To-Do List manager is a web app run on the Sinatra framework where a user can sign-up with a password protected username and manage their own set of to-do lists. It is a locally hosted app, so the user will need to use shotgun (included in gemfile) or rackup in order to access the app from their browser. In the app, a user can create, edit, read and delete their to-do lists as well as the individual to-do items themselves. 
 
 ## Prerequisites
 
@@ -10,13 +10,13 @@ Make sure you have installed bundler. You can check using your terminal to navig
 
 ## Install
 
-Once you have downloaded the repository, navigate the terminal into the routerally_cli directory. Run `bundler install` to download the necessary gems for the application.
+Once you have cloned the repository, navigate the terminal into the sinatra-to-do-project directory. Run `bundler install` to download the necessary gems for the application.
 
+After that, try running `rake db:migrate` in your terminal to make sure the database is set up. If nothing happens or the migrations are run, great! You should be good to go.
+ 
 ## Running Route Rally
 
-In order to run Route Rally, you must first make sure that the executable file in the bin/ directory has executable permissions. You can do this my running `chmod -x bin/routerally`. Once that is taken care of, Route Rally is good to go! You can execute from the cli directory by running `bin/routerally`
-
-NOTE: you will need the latitude and longitude of the locations in decimal format. 
+Run `shotgun` from your terminal and navigate to `localhost:9393` in your browser of choice. You will need to set up a username nad password for yourself in order to be able ot create to-do lists.
 
 ## Contributors Guide
 
