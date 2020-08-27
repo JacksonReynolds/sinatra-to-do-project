@@ -39,8 +39,9 @@ class ToDosController < ApplicationController
   end
 
   delete '/to_dos/:id' do
+    binding.pry
     redirect_if_not_logged_in
-    to_do = ToDo.find_by(params[:id])
+    to_do = ToDo.find_by(id: params[:id])
     owner_error if !check_owner(to_do)
     to_do.delete
     flash[:message] = "To do item deleted!"

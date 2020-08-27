@@ -22,7 +22,7 @@ Date Due: <%= @list.date_due %>
             <form action="/to_dos/<%= to_do.id %>" method="post">
                 <input type="hidden" name="_method" value="delete">
                 <input type="submit" value="Done!">
-                <%= to_do.task + to_do.id %>
+                <%= to_do.task + to_do.id.to_s %>
                 <!-- Link to edit specific to-do -->
                 <a href="/to_dos/<%= to_do.id %>/edit">Edit</a>
             </form>
