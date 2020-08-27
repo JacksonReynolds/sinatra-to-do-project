@@ -9,6 +9,3 @@ use ListsController
 use ToDosController
 use UsersController
 run ApplicationController
-use ListsController
-use ToDosController
-use UsersController
