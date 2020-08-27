@@ -4,7 +4,7 @@
 
 This To-Do List manager is a web app run on the Sinatra framework where a user can sign-up with a password protected username and manage their own set of to-do lists. It is a locally hosted app, so the user will need to use shotgun (included in gemfile) or rackup in order to access the app from their browser. In the app, a user can create, edit, read and delete their to-do lists as well as the individual to-do items themselves. 
 
-## Prerequisites
+## Pre-requisites
 
 Make sure you have installed bundler. You can check using your terminal to navigate to your root directory and running `gem install bundler`
 
