@@ -14,9 +14,9 @@ Once you have cloned the repository, navigate the terminal into the sinatra-to-d
 
 After that, try running `rake db:migrate` in your terminal to make sure the database is set up. If nothing happens or the migrations are run, great! You should be good to go.
  
-## Running Route Rally
+## Running Sinatra To-Do List Manager
 
-Run `shotgun` from your terminal and navigate to `localhost:9393` in your browser of choice. You will need to set up a username nad password for yourself in order to be able ot create to-do lists.
+Run `shotgun` from your terminal and navigate to `localhost:9393` in your browser of choice. You will need to set up a username and password for yourself in order to be able ot create to-do lists.
 
 ## Contributors Guide
 
