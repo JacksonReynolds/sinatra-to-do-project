@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
 
   get "/sign-up" do
@@ -8,8 +9,9 @@ class UsersController < ApplicationController
   end
 
   post "/sign-up" do
-    user = User.create(params[:user])
+    user = User.new(params[:user])
     if user.valid?
+      user.save
       session[:user_id] = user.id
       redirect "/"
     else
