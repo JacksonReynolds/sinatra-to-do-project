@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, SecureRandom.hex(20)
+    set :session_secret, 'secret'
     use Rack::Flash
   end
 

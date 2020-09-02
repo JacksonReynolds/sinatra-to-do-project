@@ -10,10 +10,12 @@ class ListsController < ApplicationController
   end
 
   post "/lists" do
-    list = List.create(params[:list])
-    list.user_id = session[:user_id]
-    list.save
-    redirect "/lists"
+    list = current_user.lists.build(params[:list])
+    if list.save
+      redirect '/lists'
+    else
+      redirect '/lists/new'
+    end
   end
 
   get "/lists/:id" do
